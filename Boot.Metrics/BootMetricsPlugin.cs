@@ -6,4 +6,8 @@ using Impostor.Api.Plugins;
 [ImpostorPlugin("at.duikbo.metrics")]
 public class BootMetricsPlugin : PluginBase
 {
+    public BootMetricsPlugin(GameMetrics gameMetrics)
+    {
+        // Implementation not necessary
+    }
 }
