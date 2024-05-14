@@ -29,10 +29,17 @@ public class GameMetrics
         // Collect all games with the values we want to store them with
         foreach (var game in _gameManager.Games)
         {
+            // Bucket playercount above 20 to reduce cardinality
+            var playerCount = game.PlayerCount;
+            if (playerCount > 20)
+            {
+                playerCount -= playerCount % 10;
+            }
+
             var tags = new TaggedGame(
                 game.Options.GameMode,
                 game.Options.Map,
-                game.PlayerCount,
+                playerCount,
                 game.IsPublic);
             dict.TryGetValue(tags, out var count);
             dict[tags] = count + 1;
