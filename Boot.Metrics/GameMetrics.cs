@@ -5,26 +5,25 @@ using System.Diagnostics.Metrics;
 using Impostor.Api.Games.Managers;
 using Impostor.Api.Innersloth;
 
+/// <summary>
+/// Count the amount of games currently hosted by an Impostor server, implemented using an Async Instrument.
+/// </summary>
 public class GameMetrics
 {
     private readonly ObservableUpDownCounter<int> _gameCount;
     private readonly IGameManager _gameManager;
-    private readonly ILogger<GameMetrics> _logger;
     private readonly HashSet<TaggedGame> _priorReportedSet = new();
 
-    public GameMetrics(IMeterFactory meterFactory, IGameManager gameManager, ILogger<GameMetrics> logger)
+    public GameMetrics(IMeterFactory meterFactory, IGameManager gameManager)
     {
         var meter = meterFactory.Create("Boot.Metrics.Game");
         _gameCount = meter.CreateObservableUpDownCounter("boot.metrics.game", CalculateGameCount, "{games}", "Amoung of currently open games");
         _gameManager = gameManager;
-        _logger = logger;
-        _logger.LogInformation("Started GameMetrics");
     }
 
     private IEnumerable<Measurement<int>> CalculateGameCount()
     {
         var dict = new Dictionary<TaggedGame, int>();
-        _logger.LogInformation("Calculating GameMetrics");
 
         // Collect all games with the values we want to store them with
         foreach (var game in _gameManager.Games)
@@ -53,7 +52,6 @@ public class GameMetrics
         {
             if (!dict.ContainsKey(key))
             {
-                _logger.LogInformation("{Key}: gone", key);
                 var tags = new TagList
                 {
                     { "GameMode", key.GameMode.ToString() },
@@ -68,7 +66,6 @@ public class GameMetrics
         // Add the new measurements
         foreach (var (key, val) in dict)
         {
-            _logger.LogInformation("{Key}: {Value}", key, val);
             var tags = new TagList
             {
                 { "GameMode", key.GameMode.ToString() },
