@@ -5,11 +5,6 @@ namespace Boot.Metrics;
 /// <summary>
 /// Helper class to compare tag lists.
 /// </summary>
-/// <remarks>
-/// The order of tags in the tag list is assumed to be equal in both lists.
-///
-/// Note that this is also necessary for OTel to perform optimally.
-/// </remarks>
 internal sealed class TagListEqualityComparer : IEqualityComparer<TagList>
 {
     public bool Equals(TagList x, TagList y)
@@ -19,6 +14,14 @@ internal sealed class TagListEqualityComparer : IEqualityComparer<TagList>
 
     public int GetHashCode(TagList obj)
     {
-        return obj.GetHashCode();
+        var hashCode = default(HashCode);
+
+        foreach (var (key, value) in obj)
+        {
+            hashCode.Add(key);
+            hashCode.Add(value);
+        }
+
+        return hashCode.ToHashCode();
     }
 }
