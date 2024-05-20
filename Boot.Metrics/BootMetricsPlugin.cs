@@ -6,7 +6,8 @@ using Impostor.Api.Plugins;
 [ImpostorPlugin("at.duikbo.metrics")]
 public class BootMetricsPlugin : PluginBase
 {
-    public BootMetricsPlugin(GameMetrics gameMetrics)
+    // HACK: Register metrics here so DI activates them
+    public BootMetricsPlugin(GameMetrics gameMetrics, ClientMetrics clientMetrics)
     {
         // Implementation not necessary
     }

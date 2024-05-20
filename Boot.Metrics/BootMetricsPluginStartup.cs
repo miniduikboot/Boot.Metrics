@@ -1,6 +1,5 @@
 namespace Boot.Metrics;
 
-using System.Net;
 using Impostor.Api.Plugins;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +19,7 @@ public class BootMetricsPluginStartup : IPluginHttpStartup
     public void ConfigureServices(IServiceCollection services)
     {
         // Register metrics
+        services.AddSingleton<ClientMetrics>();
         services.AddSingleton<GameMetrics>();
 
         // Set up OpenTelemetry
