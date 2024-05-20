@@ -10,14 +10,13 @@ using Impostor.Api.Innersloth;
 /// </summary>
 public class GameMetrics
 {
-    private readonly ObservableUpDownCounter<int> _gameCount;
     private readonly IGameManager _gameManager;
     private readonly HashSet<TaggedGame> _priorReportedSet = new();
 
     public GameMetrics(IMeterFactory meterFactory, IGameManager gameManager)
     {
         var meter = meterFactory.Create("Boot.Metrics.Game");
-        _gameCount = meter.CreateObservableUpDownCounter("boot.metrics.game", CalculateGameCount, "{games}", "Amoung of currently open games");
+        meter.CreateObservableUpDownCounter("boot.metrics.game", CalculateGameCount, "{games}", "Amount of currently open games");
         _gameManager = gameManager;
     }
 
