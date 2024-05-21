@@ -11,7 +11,7 @@ using Impostor.Api.Innersloth;
 public class GameMetrics
 {
     private readonly IGameManager _gameManager;
-    private readonly HashSet<TaggedGame> _priorReportedSet = new();
+    private readonly Dictionary<TagList, int> _state = new(new TagListEqualityComparer());
 
     public GameMetrics(IMeterFactory meterFactory, IGameManager gameManager)
     {
@@ -22,7 +22,11 @@ public class GameMetrics
 
     private IEnumerable<Measurement<int>> CalculateGameCount()
     {
-        var dict = new Dictionary<TaggedGame, int>();
+        // Reset internal state
+        foreach (var (key, _) in _state)
+        {
+            _state[key] = 0;
+        }
 
         // Collect all games with the values we want to store them with
         foreach (var game in _gameManager.Games)
@@ -34,49 +38,23 @@ public class GameMetrics
                 playerCount -= playerCount % 10;
             }
 
-            var tags = new TaggedGame(
-                game.Options.GameMode,
-                game.Options.Map,
-                playerCount,
-                game.IsPublic);
-            dict.TryGetValue(tags, out var count);
-            dict[tags] = count + 1;
-        }
-
-        // Convert them into measurements
-        var result = new List<Measurement<int>>();
-
-        // Remove the categories that no longer contain games
-        foreach (var key in _priorReportedSet)
-        {
-            if (!dict.ContainsKey(key))
-            {
-                var tags = new TagList
-                {
-                    { "GameMode", key.GameMode.ToString() },
-                    { "Map", key.Map.ToString() },
-                    { "PlayerCount", key.PlayerCount },
-                    { "Public", key.PublicMode },
-                };
-                result.Add(new Measurement<int>(0, tags));
-            }
-        }
-
-        // Add the new measurements
-        foreach (var (key, val) in dict)
-        {
             var tags = new TagList
             {
-                { "GameMode", key.GameMode.ToString() },
-                { "Map", key.Map.ToString() },
-                { "PlayerCount", key.PlayerCount },
-                { "Public", key.PublicMode },
+                { "GameMode", game.Options.GameMode.ToString() },
+                { "Map", game.Options.Map.ToString() },
+                { "PlayerCount", playerCount },
+                { "Public", game.IsPublic },
             };
-            result.Add(new Measurement<int>(val, tags));
-            _priorReportedSet.Add(key);
+
+            _state.TryGetValue(tags, out var count);
+            _state[tags] = count + 1;
         }
 
-        return result;
+        // Yield all combinations we found
+        foreach (var (key, val) in _state)
+        {
+            yield return new Measurement<int>(val, key);
+        }
     }
 
     private readonly record struct TaggedGame(
