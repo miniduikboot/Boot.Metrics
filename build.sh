@@ -21,7 +21,7 @@ popd
 mkdir -p output
 cp "${PACKDIR}"/Boot.Metrics-"${TAG}".zip output
 
-if [[ -v GITHUB_ENV ]]
+if [[ -v GITHUB_OUTPUT ]]
 then
-    echo "{TAG_NAME}={${TAG}}" >> "$GITHUB_OUTPUT"
+    echo "TAG_NAME=${TAG}" >> "$GITHUB_OUTPUT"
 fi
