@@ -19,9 +19,10 @@ zip -9r Boot.Metrics-"${TAG}".zip libraries plugins
 popd
 
 mkdir -p output
-cp "${PACKDIR}"/Boot.Metrics-"${TAG}".zip output
+mv "${PACKDIR}"/Boot.Metrics-"${TAG}".zip output
 
 if [[ -v GITHUB_OUTPUT ]]
 then
     echo "TAG_NAME=${TAG}" >> "$GITHUB_OUTPUT"
+    echo "PACKDIR=${PACKDIR}" >> "$GITHUB_OUTPUT"
 fi
