@@ -22,12 +22,13 @@ jobs:
           dotnet-version: 8.x
 
       - name: Build
+        id: build
         run: ./build.sh
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Boot.Metrics-${{ TAG_NAME }}
-          path: output/Boot.Metrics-${{ TAG_NAME }}.zip
+          name: Boot.Metrics-${{ steps.build.outputs.TAG_NAME }}
+          path: output/Boot.Metrics-${{ steps.build.outputs.TAG_NAME }}.zip
 
       - uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')

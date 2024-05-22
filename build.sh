@@ -23,5 +23,5 @@ cp "${PACKDIR}"/Boot.Metrics-"${TAG}".zip output
 
 if [[ -v GITHUB_ENV ]]
 then
-    echo "{TAG_NAME}={${TAG}}" >> "$GITHUB_ENV"
+    echo "{TAG_NAME}={${TAG}}" >> "$GITHUB_OUTPUT"
 fi
