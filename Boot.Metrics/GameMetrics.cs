@@ -3,7 +3,6 @@ namespace Boot.Metrics;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using Impostor.Api.Games.Managers;
-using Impostor.Api.Innersloth;
 
 /// <summary>
 /// Count the amount of games currently hosted by an Impostor server, implemented using an Async Instrument.
@@ -56,10 +55,4 @@ public class GameMetrics
             yield return new Measurement<int>(val, key);
         }
     }
-
-    private readonly record struct TaggedGame(
-        GameModes GameMode,
-        MapTypes Map,
-        int PlayerCount,
-        bool PublicMode);
 }
