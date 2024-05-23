@@ -30,10 +30,10 @@ public class ClientMetrics
         {
             var tags = new TagList
             {
-                { "Language", client.Language.ToString() },
-                { "Platform", client.PlatformSpecificData.Platform.ToString() },
-                { "GameVersion", client.GameVersion },
-                { "ChatMode", client.ChatMode },
+                { "language", client.Language.ToString() },
+                { "platform", client.PlatformSpecificData.Platform.ToString() },
+                { "game_version", client.GameVersion },
+                { "chat_mode", client.ChatMode },
             };
 
             _state.TryGetValue(tags, out var count);

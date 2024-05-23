@@ -40,10 +40,10 @@ public class GameMetrics
 
             var tags = new TagList
             {
-                { "GameMode", game.Options.GameMode.ToString() },
-                { "Map", game.Options.Map.ToString() },
-                { "PlayerCount", playerCount },
-                { "Public", game.IsPublic },
+                { "game_mode", game.Options.GameMode.ToString() },
+                { "map", game.Options.Map.ToString() },
+                { "player_count", playerCount },
+                { "public", game.IsPublic },
             };
 
             _state.TryGetValue(tags, out var count);
