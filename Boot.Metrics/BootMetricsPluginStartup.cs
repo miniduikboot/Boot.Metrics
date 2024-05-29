@@ -46,7 +46,7 @@ public class BootMetricsPluginStartup : IPluginHttpStartup
             .AddMeter("Boot.Metrics.*")
 
             // Export to Prometheus
-            .AddPrometheusExporter(o => o.DisableTotalNameSuffixForCounters = true));
+            .AddPrometheusExporter(/*o => o.DisableTotalNameSuffixForCounters = true */));
 
         // tracing omitted because that'd require adding spans in Impostor
     }
