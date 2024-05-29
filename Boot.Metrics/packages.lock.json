@@ -27,9 +27,9 @@
       },
       "OpenTelemetry.Exporter.Prometheus.AspNetCore": {
         "type": "Direct",
-        "requested": "[1.9.0-alpha.1, )",
-        "resolved": "1.9.0-alpha.1",
-        "contentHash": "Dy5rM8ICfW3ewi3+nhsdwBDJKJzO7F9nGJp2ouYIks+nK19yenfVL/ijDjzspI0ienpsCN/fwwJtKs2CxmzEsg==",
+        "requested": "[1.9.0-alpha.2, )",
+        "resolved": "1.9.0-alpha.2",
+        "contentHash": "3bgX9jI/v4rgqpXaOBUJ69UrZsw8YXZpRSKRiRlAKfa1Z5ljnrVQPVF1gvQwayqw6yUtm+zVotq3QxIeW+wIZQ==",
         "dependencies": {
           "OpenTelemetry": "1.8.1"
         }
