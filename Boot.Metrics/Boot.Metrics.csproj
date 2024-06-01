@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Impostor.Api" Version="1.9.1" ExcludeAssets="runtime" />
+    <PackageReference Include="Impostor.Api" Version="1.9.2" ExcludeAssets="runtime" />
 
     <!-- OpenTelemetry -->
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.8.1" />
