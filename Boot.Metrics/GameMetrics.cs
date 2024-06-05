@@ -23,6 +23,12 @@ public class GameMetrics : IEventListener
         _gameManager = gameManager;
     }
 
+    private enum MetricsProfile
+    {
+        StartedGames,
+        OpenGames,
+    }
+
     private IEnumerable<Measurement<int>> CalculateGameCount()
     {
         // Reset internal state
@@ -34,7 +40,7 @@ public class GameMetrics : IEventListener
         // Collect all games with the values we want to store them with
         foreach (var game in _gameManager.Games)
         {
-            var tags = GetGameTags(game);
+            var tags = GetGameTags(game, MetricsProfile.OpenGames);
             _state.TryGetValue(tags, out var count);
             _state[tags] = count + 1;
         }
@@ -49,10 +55,10 @@ public class GameMetrics : IEventListener
     [EventListener]
     public void OnGameStarted(IGameStartedEvent e)
     {
-        _totalGameCounter.Add(1, GetGameTags(e.Game));
+        _totalGameCounter.Add(1, GetGameTags(e.Game, MetricsProfile.StartedGames));
     }
 
-    private TagList GetGameTags(IGame game)
+    private TagList GetGameTags(IGame game, MetricsProfile profile)
     {
         // Bucket playercount above 20 to reduce cardinality
         var playerCount = game.PlayerCount;
@@ -61,12 +67,20 @@ public class GameMetrics : IEventListener
             playerCount -= playerCount % 10;
         }
 
-        return new TagList
+        var list = new TagList
         {
             { "game_mode", game.Options.GameMode.ToString() },
             { "map", game.Options.Map.ToString() },
             { "player_count", playerCount },
             { "public", game.IsPublic },
         };
+
+        // Adding game state doesn't make sense for StartedGames, as they'll all be in the started state.
+        if (profile == MetricsProfile.OpenGames)
+        {
+            list.Add("game_state", game.GameState);
+        }
+
+        return list;
     }
 }
