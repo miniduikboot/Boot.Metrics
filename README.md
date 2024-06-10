@@ -30,5 +30,5 @@ This plugin is actively used in my production environment. Sometimes an update i
 
 I'm open for pull requests, but please communicate with me beforehand in case I'm already working on something similar and to check if your feature fits in with my vision for this plugin.
 
-If you want to support me create plugins like this or want to sponsor a custom feature, please check out my [Github Sponsors page](https://github.com/sponsors/miniduikboot).
+If you want to support me in creating plugins like this one or want to sponsor a custom feature, please check out my [Github Sponsors page](https://github.com/sponsors/miniduikboot).
 
