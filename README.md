@@ -1,7 +1,8 @@
 # Boot.Metrics
 
-Boot.Metrics is a plugin that integrates [OpenTelemetry metrics](https://github.com/open-telemetry/opentelemetry-dotnet) into [Impostor](https://github.com/Impostor/Impostor) using a plugin.
+Boot.Metrics is a plugin that integrates [OpenTelemetry metrics](https://github.com/open-telemetry/opentelemetry-dotnet) into [Impostor](https://github.com/Impostor/Impostor) using a plugin. Here's an image of the Grafana dashboard created using data from this plugin:
 
+![A grafana dashboard visualizing an hour of production data](resources/dashboard.png)
 
 # Installation
 
