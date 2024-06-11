@@ -33,3 +33,6 @@ I'm open for pull requests, but please communicate with me beforehand in case I'
 
 If you want to support me in creating plugins like this one or want to sponsor a custom feature, please check out my [Github Sponsors page](https://github.com/sponsors/miniduikboot).
 
+# Credits
+
+Thank you empireu for writing [a previous revision of this plugin](https://github.com/miniduikboot/Impostor.Metrics). Using the lessons learned from that plugin I've created an improved version built on OpenTelemetry, which didn't exist at the time.
