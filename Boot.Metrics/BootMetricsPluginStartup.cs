@@ -43,7 +43,7 @@ public class BootMetricsPluginStartup : IPluginHttpStartup
             .AddProcessInstrumentation()
 
             // Add our own metrics
-            .AddMeter("Boot.Metrics.*")
+            .AddMeter("Boot.*")
 
             // Export to Prometheus
             .AddPrometheusExporter(/*o => o.DisableTotalNameSuffixForCounters = true */));
