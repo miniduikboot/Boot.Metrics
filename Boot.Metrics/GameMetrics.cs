@@ -58,7 +58,7 @@ public class GameMetrics : IEventListener
         _totalGameCounter.Add(1, GetGameTags(e.Game, MetricsProfile.StartedGames));
     }
 
-    private TagList GetGameTags(IGame game, MetricsProfile profile)
+    private static TagList GetGameTags(IGame game, MetricsProfile profile)
     {
         // Bucket playercount above 20 to reduce cardinality
         var playerCount = game.PlayerCount;

@@ -51,7 +51,7 @@ public class ClientMetrics : IEventListener
         _totalClientCounter.Add(1, GetClientTags(e.Client));
     }
 
-    private TagList GetClientTags(IClient client)
+    private static TagList GetClientTags(IClient client)
     {
         return new TagList
         {
