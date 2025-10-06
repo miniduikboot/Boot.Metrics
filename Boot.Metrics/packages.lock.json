@@ -4,9 +4,9 @@
     "net8.0": {
       "Impostor.Api": {
         "type": "Direct",
-        "requested": "[1.9.2, )",
-        "resolved": "1.9.2",
-        "contentHash": "ui8rMfEQd+DC6OW1DDawzkLXEHa/anaDH2uRBJ0MdZToB5gDQIhoAWe+fqNjJu8K0JLcYEACM0oXgGTDJQNPvw==",
+        "requested": "[1.10.4, )",
+        "resolved": "1.10.4",
+        "contentHash": "c2rK3EyvwH58/hyvE3H/KGqBUEHYOpFp+hBYuVlh1pu8mxWmXzLk21pohqh6Pqi75RrVCcrZCVbVJytbg+4Pew==",
         "dependencies": {
           "Impostor.Hazel.Abstractions": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
