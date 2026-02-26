@@ -25,7 +25,7 @@ jobs:
         id: build
         run: ./build.sh
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: Boot.Metrics-${{ steps.build.outputs.TAG_NAME }}
           path: ${{ steps.build.outputs.PACKDIR }}/**/*.dll
