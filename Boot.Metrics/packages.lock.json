@@ -4,11 +4,11 @@
     "net8.0": {
       "Impostor.Api": {
         "type": "Direct",
-        "requested": "[1.9.2, )",
-        "resolved": "1.9.2",
-        "contentHash": "ui8rMfEQd+DC6OW1DDawzkLXEHa/anaDH2uRBJ0MdZToB5gDQIhoAWe+fqNjJu8K0JLcYEACM0oXgGTDJQNPvw==",
+        "requested": "[1.10.8, )",
+        "resolved": "1.10.8",
+        "contentHash": "kmzVV+HbFFj5D1Tgzi/3R2hIxmaHt8aI6x5iOJk5Tjk8eg2dDEJBA5IbPMT7rADTHRWACr6e7Q6C2768gxLZ/Q==",
         "dependencies": {
-          "Impostor.Hazel.Abstractions": "1.0.0",
+          "Impostor.Hazel.Abstractions": "1.0.1",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "8.0.0"
@@ -97,8 +97,8 @@
       },
       "Impostor.Hazel.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.0.0",
-        "contentHash": "x56AEsY5fKU2Z5O7ZrzEqKfr62kq/C05Aevcciwz5yMfOQlpwuFI1awgNGJsoe+bcx+XnFc3+l+eadtY72aZsg=="
+        "resolved": "1.0.1",
+        "contentHash": "de2bMj78xDXOWwyqQVk8o4vbZKGfAgOjnWnkKB1IGGovNtxLeBF8jy3wH5moTZB6juTnLf0ptkCDkRi8c2OcjA=="
       },
       "Microsoft.AspNetCore.Http.Abstractions": {
         "type": "Transitive",
